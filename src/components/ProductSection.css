@@ -18,3 +18,16 @@
   flex-wrap: nowrap;
   justify-content: center;
 }
+
+.view-more {
+  text-align: center;
+  margin: 10px;
+}
+
+.view-more-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--main-color);
+  padding: 5px 80px;
+  border-radius: 5px;
+}

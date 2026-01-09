@@ -5,8 +5,15 @@
   flex: 0 0 280px;
 }
 
-.product-card {
+.product-card-info {
   width: 100%;
+  color: var(--main-color);
+  text-align: center;
+  padding: 10px;
+}
+.product-card-info p {
+  font-weight: 600;
+  margin-top: 4px;
 }
 
 .product-image {

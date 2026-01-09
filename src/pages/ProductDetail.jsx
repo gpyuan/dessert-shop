@@ -11,12 +11,14 @@ const ProductDetail = () => {
   if (!product) return <p>商品不存在</p>;
 
   return (
-    <div className="product-detail">
-      <ProductGallery
-        images={product.images ?? [product.image]}
-        name={product.name}
-      />
-      <ProductInfo product={product} />
+    <div className="product-detail-wrapper">
+      <div className="product-detail">
+        <ProductGallery
+          images={product.images ?? [product.image]}
+          name={product.name}
+        />
+        <ProductInfo product={product} />
+      </div>
     </div>
   );
 };

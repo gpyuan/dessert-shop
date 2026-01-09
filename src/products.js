@@ -14,7 +14,10 @@ const products = [
     id: "festival-002",
     name: "牛軋餅綜合口味禮盒-18入",
     price: 360,
-    images: [`${BASE}productsImage/festival-002.jpg`],
+    images: [
+      `${BASE}productsImage/festival-002.jpg`,
+      `${BASE}productsImage/festival-002(1).jpg`,
+    ],
     description: `｜原味/蔓越莓/巧克力/綠茶/咖啡/辣起司
   ｜規格:6入，每入兩份
    ｜保存期限:常溫兩週
@@ -23,9 +26,13 @@ const products = [
   },
   {
     id: "festival-003",
-    name: "貓舌餅乾鐵盒餅乾",
+    name: "貓舌鐵盒餅乾",
     price: 320,
-    images: [`${BASE}productsImage/festival-003.jpg`],
+    images: [
+      `${BASE}productsImage/festival-003.jpg`,
+      `${BASE}productsImage/festival-003(1).jpg`,
+      `${BASE}productsImage/festival-003(2).jpg`,
+    ],
     description:
       "貓舌餅乾鐵盒餅乾-200g+神秘壓模餅乾*2，口感酥脆，送禮自用兩相宜，讓你品味更上一層樓！",
     category: "festival",
@@ -36,7 +43,12 @@ const products = [
     id: "cookies-001",
     name: "牛軋餅",
     price: 180,
-    images: [`${BASE}productsImage/cookies-001.jpg`],
+    images: [
+      `${BASE}productsImage/cookies-001.jpg`,
+      `${BASE}productsImage/cookies-001(1).jpg`,
+      `${BASE}productsImage/cookies-001(2).jpg`,
+      `${BASE}productsImage/cookies-001(3).jpg`,
+    ],
     description:
       "一盒16入  口味：原味、蔓越莓、巧克力、綠茶、咖啡、辣起司、綜合",
     category: "cookies",
@@ -45,7 +57,10 @@ const products = [
     id: "cookies-002",
     name: "莎布蕾綜合包",
     price: 260,
-    images: [`${BASE}productsImage/cookies-002.jpg`],
+    images: [
+      `${BASE}productsImage/cookies-002.jpg`,
+      `${BASE}productsImage/cookies-002(1).jpg`,
+    ],
     description:
       "經典餅乾綜合口味，16塊/一包，送禮的推薦之選，4種口味，原味/紅茶/巧克力杏仁/抹茶巧克力",
     category: "cookies",
