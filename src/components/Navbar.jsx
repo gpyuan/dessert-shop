@@ -1,16 +1,24 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import "./Navbar.css";
 import navbarLogo from "../assets/logo.jpg";
 
 const Navbar = () => {
+  const { cartItems } = useCart();
+
+  // 計算購物車商品總數量
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <nav className="navbar">
+      {/* 右上角功能區 */}
       <div className="navigation-action">
         <Link to="/cart" className="navigation-icon">
           <i className="fa-solid fa-cart-shopping"></i>
-          <span className="cart-count">0</span>
+          {/* 購物車數字 */}
+          <span className="cart-count">{totalQuantity}</span>
         </Link>
-
+        {/*社群媒體 */}
         <a
           href="https://www.instagram.com/moolu_studio/"
           target="_blank"
@@ -20,12 +28,13 @@ const Navbar = () => {
           <i className="fa-brands fa-instagram"></i>
         </a>
       </div>
+      {/* logo */}
       <div className="navigation-logo">
         <Link to="/">
           <img src={navbarLogo} alt="Moolu Shop Logo" className="logo-img" />
         </Link>
       </div>
-
+      {/* 主選單 */}
       <div>
         <ul className="navigation-menu">
           <li>
