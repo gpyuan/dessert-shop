@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const { showToast } = useToast();
 
   return (
     <div className="product-card">
@@ -18,6 +20,7 @@ const ProductCard = ({ product }) => {
             onClick={(e) => {
               e.preventDefault();
               addToCart(product, 1);
+              showToast("已加入購物車");
             }}
           >
             加入購物車

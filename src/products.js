@@ -92,9 +92,20 @@ const products = [
     name: "貓舌餅乾(罐裝)",
     price: 180,
     images: [`${BASE}productsImage/cookies-004.jpg`],
-    description:
-      "一包100g左右，使用發酵奶油製作，味道有白色戀人的香味，喜歡奶香味的一定要買一包試試👍👍，好多小朋友都指定要吃這款❤️",
+    description: `｜一包100g左右，
+      ｜使用發酵奶油製作， 有白色戀人的奶香味`,
     category: "cookies",
+  },
+
+  //蛋糕專區
+  {
+    id: "cakes-001",
+    name: "經典布朗尼",
+    price: 80,
+    images: [`${BASE}productsImage/cakes-001.jpg`],
+    description: ` ｜選用法芙娜70%巧克力
+     ｜可加熱可冷藏`,
+    category: "cakes",
   },
 ];
 

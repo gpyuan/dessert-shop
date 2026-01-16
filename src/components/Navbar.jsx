@@ -41,10 +41,10 @@ const Navbar = () => {
             <Link to="/gift">節慶送禮</Link>
           </li>
           <li>
-            <Link to="/gift">餅乾專區</Link>
+            <Link to="/cookies">餅乾專區</Link>
           </li>
           <li>
-            <Link to="/cookies">蛋糕專區</Link>
+            <Link to="/cakes">蛋糕專區</Link>
           </li>
           <li>
             {" "}

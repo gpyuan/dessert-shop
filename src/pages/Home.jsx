@@ -10,6 +10,10 @@ const cookiesProducts = products.filter(
   (product) => product.category === "cookies"
 );
 
+const cakesProducts = products.filter(
+  (product) => product.category === "cakes"
+);
+
 const Home = () => {
   return (
     <div className="home">

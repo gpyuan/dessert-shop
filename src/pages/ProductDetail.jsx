@@ -14,7 +14,7 @@ const ProductDetail = () => {
     <div className="product-detail-wrapper">
       <div className="product-detail">
         <ProductGallery
-          images={product.images ?? [product.image]}
+          images={product.images ?? [product.images]}
           name={product.name}
         />
         <ProductInfo product={product} />

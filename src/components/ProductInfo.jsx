@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
 
 const ProductInfo = ({ product }) => {
   const { addToCart } = useCart();
+  const { showToast } = useToast();
   const [quantity, setQuantity] = useState(1);
 
   const increase = () => {
@@ -31,7 +33,10 @@ const ProductInfo = ({ product }) => {
       {/* 加入購物車 */}
       <button
         className="add-to-cart"
-        onClick={() => addToCart(product, quantity)}
+        onClick={() => {
+          addToCart(product, quantity);
+          showToast(`已加入購物車*${quantity}`);
+        }}
       >
         加入購物車
       </button>
