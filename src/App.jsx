@@ -5,6 +5,10 @@ import ProductDetail from "./pages/ProductDetail";
 // import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
 import Toast from "./components/Toast";
+import Footer from "./components/Footer";
+import Shipping from "./pages/policy/Shipping";
+import Refund from "./pages/policy/Refund";
+import Privacy from "./pages/policy/Privacy";
 // import "./index.css";
 
 function App() {
@@ -13,10 +17,15 @@ function App() {
       <Navbar />
       <Toast />
       <Routes>
+        <Route path="/shipping" element={<Shipping />}></Route>
+        <Route path="/refund" element={<Refund />}></Route>
+        <Route path="/privacy" element={<Privacy />}></Route>
+
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         {/* <Route path="/cart" element={<Cart />} /> */}
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
