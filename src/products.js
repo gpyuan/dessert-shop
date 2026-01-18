@@ -46,6 +46,22 @@ const products = [
       ｜口感酥脆，送禮自用兩相宜`,
     category: "festival",
   },
+  {
+    id: "festival-004",
+    name: "2026馬年新春禮盒",
+    price: 520,
+    images: [`${BASE}productsImage/festival-004.jpg`],
+    description: `｜🔶️內容物
+牛軋餅3入/盒 共6款
+口味：原味、蔓越莓、巧克力、綠茶、咖啡、辣起司
+貓舌餅乾(原味) 45g/盒
+巧克力棋盤餅乾 8入/盒
+
+｜⚠️注意事項｜
+因禮盒尺寸關係，恕無法超商取貨付款，一律使用黑貓宅急便，運費固定160元
+  `,
+    category: "festival",
+  },
 
   //餅乾專區
   {

@@ -8,8 +8,6 @@ export const ToastProvider = ({ children }) => {
   const [toast, setToast] = useState(null);
 
   const showToast = (message, duration = 2000) => {
-    console.log("showToast被呼叫:", message);
-
     setToast({ message });
 
     setTimeout(() => {
