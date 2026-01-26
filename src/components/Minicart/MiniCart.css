@@ -1,0 +1,123 @@
+.mini-cart {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background-color: var(--section-color);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  top: 130px;
+  right: 0;
+
+  min-width: 320px;
+  min-height: 100px;
+  max-height: 500px;
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.mini-cart.open {
+  transform: translateX(0);
+}
+
+.mini-cart-content {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 和 Edge */
+  max-height: calc(100% - 50px);
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+/* 空購物車時置中 */
+.mini-cart-content:has(.empty) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* MinicartItem */
+
+.mini-cart-item {
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 2px solid rgb(235, 223, 223);
+  gap: 10px;
+}
+
+.item-image {
+  width: 90px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 5%;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  color: var(--main-color);
+  gap: 5px;
+  flex: 1;
+}
+
+.item-name {
+  color: rgb(174, 137, 88);
+}
+
+.item-quantity {
+  font-weight: 600;
+}
+.item-price {
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.remove-btn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  color: rgb(174, 137, 88);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  filter: brightness(0.5);
+}
+
+.mini-cart-checkout {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+  margin-top: auto;
+
+  background-color: rgba(144, 104, 18, 0.7);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+.mini-cart-checkout:hover {
+  background-color: rgb(144, 104, 18);
+}

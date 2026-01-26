@@ -5,7 +5,7 @@ import { useRef } from "react";
 import "./Navbar.css";
 import navbarLogo from "../assets/logo.jpg";
 
-const Navbar = () => {
+const Navbar = ({ onCartClick }) => {
   const { cartItems } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const scrolledRef = useRef(scrolled);
@@ -50,11 +50,11 @@ const Navbar = () => {
       <div className="navbar-inner">
         {/* 右上角功能區 */}
         <div className="navigation-action">
-          <Link to="/cart" className="navigation-icon">
+          <button className="navigation-icon" onClick={onCartClick}>
             <i className="fa-solid fa-cart-shopping"></i>
             {/* 購物車數字 */}
             <span className="cart-count">{totalQuantity}</span>
-          </Link>
+          </button>
           {/*社群媒體 */}
           <a
             href="https://www.instagram.com/moolu_studio/"
