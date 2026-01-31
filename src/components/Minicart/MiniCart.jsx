@@ -54,7 +54,11 @@ const MiniCart = ({ open, onClose }) => {
             <p className="empty">購物車目前是空的</p>
           ) : (
             cartItems.map((item) => (
-              <MiniCartItem key={item.id} item={item} onClose={onClose} />
+              <MiniCartItem
+                key={item.cartItemId}
+                item={item}
+                onClose={onClose}
+              />
             ))
           )}
         </div>

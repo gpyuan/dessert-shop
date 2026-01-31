@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./ProductSection.css";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 
 const ProductSection = ({ title, products = [], linkTo }) => {
   const previewProducts = products.slice(0, 3);

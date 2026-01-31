@@ -1,5 +1,5 @@
 import "./Toast.css";
-import { useToast } from "../context/ToastContext";
+import { useToast } from "../../context/ToastContext";
 import { useState, useEffect } from "react";
 
 const Toast = () => {

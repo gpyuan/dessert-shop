@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
-import { useToast } from "../context/ToastContext";
+import { useCart } from "../../context/CartContext";
+import { useToast } from "../../context/ToastContext";
+import ProductDetail from "../../pages/ProductDetail/ProductDetail";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
@@ -19,7 +20,7 @@ const ProductCard = ({ product }) => {
             className="hover-add-btn"
             onClick={(e) => {
               e.preventDefault();
-              addToCart(product, 1);
+              addToCart(product, { flavor: selectFlavor, quantity });
               showToast("已加入購物車");
             }}
           >

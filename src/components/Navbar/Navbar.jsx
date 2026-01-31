@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import "./Navbar.css";
-import navbarLogo from "../assets/logo.jpg";
+import navbarLogo from "../../assets/logo.jpg";
 
 const Navbar = ({ onCartClick }) => {
   const { cartItems } = useCart();

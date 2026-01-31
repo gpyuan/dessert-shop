@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import products from "../products";
-import ProductCard from "../components/ProductCard";
+import products from "../../products";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import "./CategoryPage.css";
 
 const CategoryPage = () => {

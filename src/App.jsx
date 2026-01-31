@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import ProductDetail from "./pages/ProductDetail";
-// import Cart from "./pages/Cart";
-import Navbar from "./components/Navbar";
-import Toast from "./components/Toast";
+import Home from "./pages/Home/Home";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import Navbar from "./components//Navbar/Navbar";
+import Toast from "./components/Toast/Toast";
 import Footer from "./components/Footer/Footer";
 import Shipping from "./pages/policy/Shipping";
 import Refund from "./pages/policy/Refund";
 import Privacy from "./pages/policy/Privacy";
-import CategoryPage from "./pages/CategoryPage";
-import Announcement from "./pages/Announcement";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import Announcement from "./pages/Announcement/Announcement";
 import MiniCart from "./components/Minicart/MiniCart";
 // import "./index.css";
 

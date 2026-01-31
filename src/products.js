@@ -74,8 +74,8 @@ const products = [
       `${BASE}productsImage/cookies-001(2).jpg`,
       `${BASE}productsImage/cookies-001(3).jpg`,
     ],
-    description: `｜一盒16入  
-      ｜口味：原味、蔓越莓、巧克力、綠茶、咖啡、辣起司、綜合`,
+    flavors: ["原味", "蔓越莓", "巧克力", "綠茶", "綜合"],
+    description: `｜一盒16入`,
     category: "cookies",
   },
   {

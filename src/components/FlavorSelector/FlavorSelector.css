@@ -1,0 +1,20 @@
+.flavor-selector {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.flavor-selector button {
+  padding: 2px 8px;
+  color: #4a4a4a;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flavor-selector .active {
+  background-color: rgba(144, 104, 18, 0.77);
+  color: #ffffff;
+}

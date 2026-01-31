@@ -1,5 +1,5 @@
-import products from "../products";
-import ProductSection from "../components/ProductSection";
+import products from "../../products";
+import ProductSection from "../../components/ProductSection/ProductSection";
 import "./Home.css";
 
 const festivalProducts = products.filter(

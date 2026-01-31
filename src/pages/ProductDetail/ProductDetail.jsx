@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
-import products from "../products";
-import ProductGallery from "../components/ProductGallery";
-import ProductInfo from "../components/ProductInfo";
+import products from "../../products";
+import ProductGallery from "../../components/ProductDetail/ProductGallery";
+import ProductInfo from "../../components/ProductDetail/ProductInfo";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
 
-  if (!product) return <p>商品不存在</p>;
+  if (!product) return <p className="undefined">商品不存在</p>;
 
   return (
     <div className="product-detail-wrapper">

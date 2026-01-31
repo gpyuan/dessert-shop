@@ -3,30 +3,36 @@ import { createContext, useContext, useState } from "react";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  //購物車內容
   const [cartItems, setCartItems] = useState([]);
 
-  //加入購物車
-  const addToCart = (product, quantity = 1) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+  // 加入購物車
+  const addToCart = (product, { quantity = 1, flavor = null }) => {
+    console.log("addToCart flavor:", flavor);
 
-      //若已有商品，則數量+1
+    setCartItems((prev) => {
+      const cartItemId = flavor ? `${product.id}-${flavor}` : product.id;
+
+      const existing = prev.find((item) => item.cartItemId === cartItemId);
+
+      // 如果商品存在，則數量+1
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id
+          item.cartItemId === cartItemId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      // 如果是新商品 → 新增
+
+      // 新增商品
       return [
         ...prev,
         {
-          id: product.id,
+          cartItemId,
+          productId: product.id,
           name: product.name,
           price: product.price,
           image: product.images?.[0],
+          flavor,
           quantity,
         },
       ];
@@ -34,31 +40,19 @@ export const CartProvider = ({ children }) => {
   };
 
   // 移除商品
-  const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const removeFromCart = (cartItemId) => {
+    setCartItems((prev) =>
+      prev.filter((item) => item.cartItemId !== cartItemId)
+    );
   };
 
-  // 清空購物車
-  const clearCart = () => {
-    setCartItems([]);
-  };
+  // 計算總金額
 
-  //提供全站使用
   return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        clearCart,
-      }}
-    >
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-// 自訂Hook
-export const useCart = () => {
-  return useContext(CartContext);
-};
+export const useCart = () => useContext(CartContext);
