@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ProductDetailContain.css";
+import "./ProductDetailContent.css";
 
 const ProductGallery = ({ images = [], name }) => {
   const [activeIndex, setActiveIndex] = useState(0);

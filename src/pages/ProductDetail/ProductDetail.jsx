@@ -4,7 +4,7 @@ import ProductGallery from "../../components/ProductDetail/ProductGallery";
 import ProductInfo from "../../components/ProductDetail/ProductInfo";
 import "./ProductDetail.css";
 
-const ProductDetail = () => {
+const ProductDetail = ({}) => {
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
 

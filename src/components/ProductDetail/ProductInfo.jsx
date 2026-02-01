@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
 import FlavorSelector from "../FlavorSelector/FlavorSelector";
+import "./ProductDetailContent.css";
 
 const ProductInfo = ({ product }) => {
   const { addToCart } = useCart();
