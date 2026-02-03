@@ -27,6 +27,11 @@ const Home = () => {
         products={cookiesProducts}
         linkTo="/products/cookies"
       />
+      <ProductSection
+        title="蛋糕專區"
+        products={cakesProducts}
+        linkTo="/products/cakes"
+      />
     </div>
   );
 };

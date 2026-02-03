@@ -1,6 +1,6 @@
 .category-page {
   width: 100%;
-  padding: 40px;
+  padding: 20px;
   background-color: var(--section-color);
 }
 .category-title {
@@ -19,6 +19,6 @@
   max-width: 1100px;
   margin: 0 auto;
 
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
 }

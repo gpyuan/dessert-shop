@@ -25,8 +25,6 @@ export const CartProvider = ({ children }) => {
 
   // 加入購物車
   const addToCart = (product, { quantity = 1, flavor = null }) => {
-    console.log("addToCart flavor:", flavor);
-
     setCartItems((prev) => {
       const cartItemId = flavor ? `${product.id}-${flavor}` : product.id;
 

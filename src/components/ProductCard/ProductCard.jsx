@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
-import ProductDetail from "../../pages/ProductDetail/ProductDetail";
 import ProductModal from "./ProductModal";
 import "./ProductCard.css";
 import { useState } from "react";
@@ -22,8 +21,10 @@ const ProductCard = ({ product }) => {
           {/* 加入購物車 Hover */}
           <button
             className="hover-add-btn"
+            aria-label={`將 ${product.name} 加入購物車`}
             onClick={(e) => {
               e.preventDefault();
+              e.stopPropagation();
 
               if (!hasFlavors) {
                 // 沒口味 -> 直接加購物車

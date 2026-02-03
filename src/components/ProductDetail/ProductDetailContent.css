@@ -120,13 +120,17 @@
   background-color: rgb(144, 104, 18);
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 800px) {
   .product-detail {
     flex-direction: column;
     gap: 32px;
+    align-items: center;
   }
 
   .product-gallery {
     max-width: 100%;
   }
-} */
+  .gallery-main {
+    flex: 0 0 clamp(150px, 60vw, 400px);
+  }
+}

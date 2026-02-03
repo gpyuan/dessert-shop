@@ -3,7 +3,7 @@ import "./ProductSection.css";
 import ProductCard from "../ProductCard/ProductCard";
 
 const ProductSection = ({ title, products = [], linkTo }) => {
-  const previewProducts = products.slice(0, 3);
+  const previewProducts = products.slice(0, 4);
 
   return (
     <section className="product-section">
@@ -15,7 +15,7 @@ const ProductSection = ({ title, products = [], linkTo }) => {
         ))}
       </div>
 
-      {products.length > 3 && (
+      {products.length > 4 && (
         <div className="view-more">
           <Link to={linkTo} className="view-more-btn">
             查看更多

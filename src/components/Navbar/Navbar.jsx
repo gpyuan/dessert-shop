@@ -1,52 +1,19 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { useEffect, useState } from "react";
-import { useRef } from "react";
 import "./Navbar.css";
 import navbarLogo from "../../assets/logo.jpg";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = ({ onCartClick }) => {
   const { cartItems } = useCart();
-  const [scrolled, setScrolled] = useState(false);
-  const scrolledRef = useRef(scrolled);
-
-  // 動態監聽滾動以切換導覽列外觀
-  useEffect(() => {
-    scrolledRef.current = scrolled;
-  }, [scrolled]);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-
-          if (scrollY > 100 && !scrolledRef.current) {
-            setScrolled(true);
-          } else if (scrollY < 50 && scrolledRef.current) {
-            setScrolled(false);
-          }
-
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // 計算購物車商品總數量
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <header className="navbar">
       <div className="navbar-inner">
         {/* 右上角功能區 */}
         <div className="navigation-action">
@@ -65,13 +32,17 @@ const Navbar = ({ onCartClick }) => {
             <i className="fa-brands fa-instagram"></i>
           </a>
         </div>
+        {/* 手機主選單 */}
+        <button className="menu-btn" onClick={() => setMenuOpen(true)}>
+          <i className="fa-solid fa-bars"></i>
+        </button>
         {/* logo */}
         <div className="navigation-logo">
           <Link to="/">
             <img src={navbarLogo} alt="Moolu Shop Logo" className="logo-img" />
           </Link>
         </div>
-        {/* 主選單 */}
+        {/* 桌機主選單 */}
         <nav>
           <ul className="navigation-menu">
             <li>
@@ -84,11 +55,11 @@ const Navbar = ({ onCartClick }) => {
               <Link to={`/products/cakes`}>蛋糕專區</Link>
             </li>
             <li>
-              {" "}
               <Link to="/announcement">賣場公告</Link>
             </li>
           </ul>
         </nav>
+        <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
       </div>
     </header>
   );

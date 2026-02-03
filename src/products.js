@@ -62,6 +62,25 @@ const products = [
   `,
     category: "festival",
   },
+  {
+    id: "festival-005",
+    name: "造型鐵盒餅乾",
+    price: 680,
+    images: [
+      `${BASE}productsImage/festival-005.jpg`,
+      `${BASE}productsImage/festival-005(1).jpg`,
+    ],
+    description: ` ｜造型鐵盒餅乾｜
+    尺寸：20×15cm，均附提袋
+
+｜🌲鐵盒餅乾內容｜
+造型壓模餅乾3款
+原味方型壓模餅乾*6
+擠花餅乾*8
+咖啡豆餅乾*6
+伯爵茶小圓餅*10`,
+    category: "festival",
+  },
 
   //餅乾專區
   {

@@ -46,3 +46,12 @@
 .footer-logo img {
   width: 120px;
 }
+
+@media screen and (max-width: 500px) {
+  .footer-logo {
+    display: none;
+  }
+  .footer-contain {
+    justify-content: flex-start;
+  }
+}
