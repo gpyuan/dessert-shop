@@ -7,25 +7,6 @@ import MiniCartItem from "./MiniCartItem";
 const MiniCart = ({ open, onClose }) => {
   const { cartItems } = useCart();
   const cartRef = useRef(null);
-  // const [visible, setVisible] = useState(false);
-  // const [animate, setAnimate] = useState(false);
-
-  //控制進/退場
-  // useEffect(() => {
-  //   if (open) {
-  //     setVisible(true);
-  //     setTimeout(() => {
-  //       setAnimate(true);
-  //     }, 10);
-  //   } else {
-  //     setAnimate(false);
-  //     const timer = setTimeout(() => {
-  //       setVisible(false);
-  //     }, 300);
-
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [open]);
 
   //點擊外部關閉
   useEffect(() => {
@@ -44,8 +25,6 @@ const MiniCart = ({ open, onClose }) => {
     };
   }, [open, onClose]);
 
-  // if (!visible) return null;
-
   return (
     <aside ref={cartRef} className={`mini-cart ${open ? "open" : ""}`}>
       <div className="mini-cart-content">
@@ -57,9 +36,11 @@ const MiniCart = ({ open, onClose }) => {
           ))
         )}
       </div>
-      <Link to="/checkout" className="mini-cart-checkout">
-        立刻結帳
-      </Link>
+      {cartItems.length > 0 && (
+        <Link to="/checkout" className="mini-cart-checkout">
+          立刻結帳
+        </Link>
+      )}
     </aside>
   );
 };

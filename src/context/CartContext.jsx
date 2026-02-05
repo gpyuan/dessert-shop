@@ -55,6 +55,30 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // checkout 的增加數量按鈕
+  const increaseQuantity = (cartItemId) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.cartItemId === cartItemId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  // checkout 的減少數量按鈕
+  const decreaseQuantity = (cartItemId) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.cartItemId === cartItemId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
   // 移除商品
   const removeFromCart = (cartItemId) => {
     setCartItems((prev) =>
@@ -65,7 +89,15 @@ export const CartProvider = ({ children }) => {
   // 計算總金額
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

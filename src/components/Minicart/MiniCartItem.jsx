@@ -8,7 +8,7 @@ const MiniCartItem = ({ item }) => {
   return (
     <div className="mini-cart-item">
       <div className="item-image">
-        <Link to={`/product/${item.cartItemId}`}>
+        <Link to={`/product/${item.productId}`}>
           <img src={item.image} alt={item.name} />
         </Link>
       </div>

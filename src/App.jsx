@@ -11,7 +11,8 @@ import Privacy from "./pages/policy/Privacy";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import Announcement from "./pages/Announcement/Announcement";
 import MiniCart from "./components/Minicart/MiniCart";
-// import "./index.css";
+import Checkout from "./pages/Checkout/Checkout";
+import "./index.css";
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/products/:category" element={<CategoryPage />}></Route>
         <Route path="/announcement" element={<Announcement />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>
       <MiniCart open={cartOpen} onClose={() => setCartOpen(false)}></MiniCart>
       <Footer />
