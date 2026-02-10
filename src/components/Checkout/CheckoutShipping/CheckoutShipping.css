@@ -1,0 +1,86 @@
+.checkout-shipping {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 80vw;
+  max-width: 900px;
+  border-radius: 10px;
+  padding: 0 30px;
+  gap: 10px;
+}
+
+.shipping-option {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  flex: 0 1 400px;
+  min-width: 280px;
+  padding: 15px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.shipping-option:hover {
+  border: 2px solid #d2b48c;
+}
+
+.shipping-info {
+  margin-left: 15px;
+  flex: 1;
+}
+
+.shipping-option input[type="radio"] {
+  display: flex;
+  align-items: center;
+  position: relative;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  margin-right: 12px;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.shipping-option input[type="radio"]:checked {
+  border-color: var(--main-color);
+}
+
+.shipping-option input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #d2b48c;
+  border-radius: 50%;
+}
+
+.shipping-option.selected {
+  border: 2px solid #d2b48c;
+}
+
+.shipping-price {
+  color: rgb(174, 171, 171);
+}
+
+/* 運送資料表單 */
+.adress-form {
+  width: 80vw;
+  max-width: 900px;
+}
+.adress-form-title {
+  background-color: var(--checkout-header-color);
+  color: var(--checkout-header-text-color);
+  padding: 10px 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  display: inline-block;
+}

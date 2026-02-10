@@ -1,13 +1,8 @@
 .checkout-cart-item {
   width: 100%;
-  display: grid;
-  grid-template-columns: 100px 1fr 120px 150px 120px;
   padding: 15px;
   border: 1px solid rgb(231, 221, 214);
   background-color: #fff;
-  gap: 15px;
-  align-items: center;
-  flex-wrap: nowrap;
 }
 
 .checkout-cart-item-img {
@@ -66,7 +61,7 @@
   display: flex;
 }
 
-.checkout-cart-item-remove-btn {
+.checkout-cart-item-remove-btn button {
   background: none;
   border: none;
   font-size: 20px;

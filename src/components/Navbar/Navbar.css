@@ -5,10 +5,10 @@
   z-index: 1000;
   background: #fff;
   box-shadow: none;
+  width: 100vw;
 }
 
 .navbar-inner {
-  width: 100vw;
   margin: 0 auto;
 }
 
@@ -16,6 +16,7 @@
   display: flex;
   gap: 16px;
   justify-content: flex-end;
+  margin-right: 15px;
 }
 
 .navigation-logo {

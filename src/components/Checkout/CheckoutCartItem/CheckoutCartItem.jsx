@@ -1,11 +1,11 @@
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../../context/CartContext";
 import "./CheckoutCartItem.css";
 
 const CheckoutCartItem = ({ item }) => {
   const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
 
   return (
-    <div className="checkout-cart-item">
+    <div className="cart-grid-layout  checkout-cart-item">
       {/* 商品圖片 */}
       <div className="checkout-cart-item-img">
         <img src={item.image} alt={item.name} />
@@ -45,17 +45,14 @@ const CheckoutCartItem = ({ item }) => {
         </button>
       </div>
 
-      {/* 小計 & 刪除 */}
-      <div className="checkout-cart-item-action">
-        <p className="checkout-cart-item-subtotal">
-          NT${item.price * item.quantity}
-        </p>
-        <button
-          className="checkout-cart-item-remove-btn"
-          onClick={() => removeFromCart(item.cartItemId)}
-        >
-          ✕
-        </button>
+      {/* 小計 */}
+      <div className="checkout-cart-item-subtotal">
+        NT${item.price * item.quantity}
+      </div>
+
+      {/* 刪除 */}
+      <div className="checkout-cart-item-remove-btn">
+        <button onClick={() => removeFromCart(item.cartItemId)}>✕</button>
       </div>
     </div>
   );

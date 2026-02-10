@@ -1,0 +1,26 @@
+.checkout-billing {
+  background-color: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+.billing-label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+
+.billing-input {
+  padding-left: 5px;
+  height: 40px;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+.billing-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--section-color);
+}
