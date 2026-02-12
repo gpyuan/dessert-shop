@@ -1,12 +1,18 @@
-import { useState } from "react";
 import "./CheckoutShipping.css";
 import { CityData } from "../../../CityData";
+import ContactForm from "../ContactForm";
 
 const CheckoutShipping = ({
   shippingMethod,
   setShippingMethod,
+  shippingContact,
+  handleShippingContactChange,
+  sameAsBilling,
+  setSameAsBilling,
   adress,
-  setAdress,
+  setAddress,
+  errors,
+  handleBlur,
 }) => {
   // 物流選項
   const shippingOptions = [
@@ -32,6 +38,9 @@ const CheckoutShipping = ({
 
   return (
     <div className="checkout-shipping">
+      {/* 收件人資訊 */}
+
+      {/* 運送方法 */}
       {shippingOptions.map((option) => (
         <label
           key={option.id}
@@ -55,11 +64,30 @@ const CheckoutShipping = ({
           </span>
         </label>
       ))}
-      {/* 宅配地址輸入 */}
+
+      {/* 同購買者勾選 */}
+      <label className="same-as-billing">
+        <input
+          type="checkbox"
+          checked={sameAsBilling}
+          onChange={(e) => setSameAsBilling(e.target.checked)}
+        />
+        同購買者勾選
+      </label>
+
+      {/* 收件者資訊表單 */}
+      <ContactForm
+        data={shippingContact}
+        errors={errors}
+        onChange={handleShippingContactChange}
+        onBlur={handleBlur}
+      />
+
+      {/* 宅配地址 + 收件人資訊 */}
       {shippingMethod === "home" && (
         <div className="adress-form">
           <h3 className="adress-form-title">請填寫配送資訊</h3>
-          <p></p>
+
           <form>
             <input
               type="text"

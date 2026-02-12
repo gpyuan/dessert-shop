@@ -21,4 +21,10 @@ export const ToastProvider = ({ children }) => {
   );
 };
 
-export const useToast = () => useContext(ToastContext);
+export const useToast = () => {
+  const context = useContext(ToastContext);
+  if (!context) {
+    throw new Error("useToast 必須在 ToastProvider 內部使用");
+  }
+  return context;
+};

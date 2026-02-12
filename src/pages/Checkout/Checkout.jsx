@@ -1,6 +1,7 @@
-import "./checkout.css";
+import "./Checkout.css";
 import CheckoutCartItem from "../../components/Checkout/CheckoutCartItem/CheckoutCartItem";
 import { useCart } from "../../context/CartContext";
+import { useCheckout } from "../../context/CheckoutContext";
 import { useEffect, useState } from "react";
 import CheckoutShipping from "../../components/Checkout/CheckoutShipping/CheckoutShipping";
 import CheckoutBilling from "../../components/Checkout/CheckoutBilling/CheckoutBilling";
@@ -11,27 +12,19 @@ const Checkout = () => {
   const itemCount = cartItems.length;
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // CheckoutBilling
-  const [billingData, setBillingData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  // CheckoutContext
+  const { shippingContact, handleShippingContactChange } = useCheckout();
 
-  // CheckoutShipping
-  const [shippingMethod, setShippingMethod] = useState("");
-  const [address, setAdress] = useState({
-    city: "",
-    district: "",
-    street: "",
-  });
-
-  // function
-  const handleBillingChange = (e) => {
-    const { name, value } = e.target;
-
-    setBillingData((prev) => ({ ...prev, [name]: value }));
-  };
+  const {
+    billingData,
+    errors,
+    handleBillingChange,
+    handleBlur,
+    shippingMethod,
+    setShippingMethod,
+    address,
+    // setAddress,
+  } = useCheckout();
 
   return (
     <form className="checkout-container">
@@ -73,6 +66,8 @@ const Checkout = () => {
         <CheckoutBilling
           billingData={billingData}
           onChange={handleBillingChange}
+          errors={errors}
+          onBlur={handleBlur}
         />
       </section>
 
@@ -84,8 +79,12 @@ const Checkout = () => {
         <CheckoutShipping
           shippingMethod={shippingMethod}
           setShippingMethod={setShippingMethod}
-          address={address}
-          setAdress={setAdress}
+          shippingContact={shippingContact}
+          handleShippingContactChange={handleShippingContactChange}
+          // sameAsBilling={sameAsBilling}
+          // setSameAsBilling={setSameAsBilling}
+          // address={address}
+          // setAdress={setAdress}
         />
       </section>
 
