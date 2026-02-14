@@ -9,46 +9,47 @@ export const CheckoutProvider = ({ children }) => {
     email: "",
     phone: "",
   });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [billingErrors, setBillingErrors] = useState({});
+  const [billingTouched, setBillingTouched] = useState({});
 
-  // 運送資訊
-  const [shippingMethod, setShippingMethod] = useState("");
-  const [sameAsBilling, setSameAsBilling] = useState(false);
-
+  // 收件者資訊
   const [shippingContact, setShippingContact] = useState({
     name: "",
     email: "",
     phone: "",
   });
 
+  const [shippingErrors, setShippingErrors] = useState({});
+  const [shippingTouched, setShippingTouched] = useState({});
+
+  const [sameAsBilling, setSameAsBilling] = useState(false);
+
+  // 地址
   const [address, setAddress] = useState({
     city: "",
     district: "",
     street: "",
   });
 
-  // 勾選同購買者資訊時帶入
+  const [addressErrors, setAddressErrors] = useState({});
+
+  // 運送方式
+  const [shippingMethod, setShippingMethod] = useState("");
+
+  // 同購買者邏輯
   useEffect(() => {
     if (sameAsBilling) {
+      setShippingContact({ ...billingData });
+      setShippingErrors({});
+      setShippingTouched({});
+    } else {
       setShippingContact({
-        name: billingData.name,
-        email: billingData.email,
-        phone: billingData.phone,
+        name: "",
+        email: "",
+        phone: "",
       });
     }
   }, [sameAsBilling, billingData]);
-
-  const handleShippingContactChange = (e) => {
-    const { name, value } = e.target;
-    setShippingContact((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // 訂單資訊（送出後儲存）
-  const [orderInfo, setOrderInfo] = useState(null);
 
   // 驗證函數
   const validateField = (name, value) => {
@@ -70,69 +71,175 @@ export const CheckoutProvider = ({ children }) => {
     }
   };
 
+  const validateAddress = () => {
+    const errors = {};
+
+    if (!address.city) {
+      errors.city = "請選擇縣市";
+    }
+
+    if (!address.district) {
+      errors.district = "請選擇區域";
+    }
+
+    setAddressErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
+  // Billing handlers
   const handleBillingChange = (e) => {
     const { name, value } = e.target;
+
     setBillingData((prev) => ({ ...prev, [name]: value }));
 
-    if (touched[name]) {
+    if (billingTouched[name]) {
       const error = validateField(name, value);
-      setErrors((prev) => ({ ...prev, [name]: error }));
+      setBillingErrors((prev) => ({ ...prev, [name]: error }));
     }
   };
 
-  const handleBlur = (e) => {
+  const handleBillingBlur = (e) => {
     const { name, value } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
+
+    setBillingTouched((prev) => ({ ...prev, [name]: true }));
+
     const error = validateField(name, value);
-    setErrors((prev) => ({ ...prev, [name]: error }));
+    setBillingErrors((prev) => ({ ...prev, [name]: error }));
   };
 
+  // Shipping handlers
+  const handleShippingChange = (e) => {
+    const { name, value } = e.target;
+
+    setShippingContact((prev) => ({ ...prev, [name]: value }));
+
+    if (shippingTouched[name]) {
+      const error = validateField(name, value);
+      setShippingErrors((prev) => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handleShippingBlur = (e) => {
+    const { name, value } = e.target;
+
+    setShippingTouched((prev) => ({ ...prev, [name]: true }));
+
+    const error = validateField(name, value);
+    setShippingErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  // 全部驗證(送出前)
   const validateAll = () => {
-    const nameError = validateField("name", billingData.name);
-    const emailError = validateField("email", billingData.email);
-    const phoneError = validateField("phone", billingData.phone);
+    // Billing
+    const billingNewErrors = {
+      name: validateField("name", billingData.name),
+      email: validateField("email", billingData.email),
+      phone: validateField("phone", billingData.phone),
+    };
 
-    const newErrors = { name: nameError, email: emailError, phone: phoneError };
-    setErrors(newErrors);
-    setTouched({ name: true, email: true, phone: true });
+    setBillingErrors(billingNewErrors);
+    setBillingTouched({
+      name: true,
+      email: true,
+      phone: true,
+    });
 
-    return !nameError && !emailError && !phoneError;
+    const billingValid = Object.values(billingNewErrors).every((err) => !err);
+
+    // Shipping（如果沒勾同購買者才驗）
+    let shippingValid = true;
+
+    if (!sameAsBilling) {
+      const shippingNewErrors = {
+        name: validateField("name", shippingContact.name),
+        email: validateField("email", shippingContact.email),
+        phone: validateField("phone", shippingContact.phone),
+      };
+
+      setShippingErrors(shippingNewErrors);
+      setShippingTouched({
+        name: true,
+        email: true,
+        phone: true,
+      });
+
+      shippingValid = Object.values(shippingNewErrors).every((err) => !err);
+    }
+
+    // 地址（只有宅配才驗）
+    let addressValid = true;
+
+    if (shippingMethod === "home") {
+      addressValid = validateAddress();
+    }
+
+    return billingValid && shippingValid && addressValid;
   };
+
+  // 非宅配時清空地址
+  useEffect(() => {
+    if (shippingMethod !== "home") {
+      setAddress({
+        city: "",
+        district: "",
+        street: "",
+      });
+      setAddressErrors({});
+    }
+  }, [shippingMethod]);
 
   // 重置表單（訂單完成後）
   const resetCheckout = () => {
     setBillingData({ name: "", email: "", phone: "" });
+    setShippingContact({ name: "", email: "", phone: "" });
+
+    setBillingErrors({});
+    setBillingTouched({});
+
+    setShippingErrors({});
+    setShippingTouched({});
+
+    setAddress({
+      city: "",
+      district: "",
+      street: "",
+    });
+
+    setAddressErrors({});
+
     setShippingMethod("");
-    setAddress({ city: "", district: "", street: "" });
-    setErrors({});
-    setTouched({});
+    setSameAsBilling(false);
   };
 
   const value = {
-    // ===== 購買人 =====
+    // Billing
     billingData,
+    billingErrors,
     handleBillingChange,
-    handleBlur,
-    errors,
+    handleBillingBlur,
 
-    // ===== 收件人 =====
+    // Shipping
     shippingContact,
-    handleShippingContactChange,
+    shippingErrors,
+    handleShippingChange,
+    handleShippingBlur,
     sameAsBilling,
     setSameAsBilling,
 
-    // ===== 運送 =====
-    shippingMethod,
-    setShippingMethod,
+    // Address
     address,
     setAddress,
+    addressErrors,
 
-    // ===== 訂單 =====
-    orderInfo,
-    setOrderInfo,
+    // Shipping method
+    shippingMethod,
+    setShippingMethod,
 
-    // ===== 其他 =====
+    // Validation
     validateAll,
+
+    // Reset
     resetCheckout,
   };
 

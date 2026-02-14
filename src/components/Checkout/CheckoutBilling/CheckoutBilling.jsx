@@ -1,14 +1,18 @@
 import "./CheckoutBilling.css";
 import ContactForm from "../../Checkout/ContactForm";
+import { useCheckout } from "../../../context/CheckoutContext";
 
-const CheckoutBilling = ({ billingData, onChange, errors, onBlur }) => {
+const CheckoutBilling = () => {
+  const { billingData, handleBillingChange, handleBillingBlur, billingErrors } =
+    useCheckout();
+
   return (
     <section className="checkout-billing">
       <ContactForm
         data={billingData}
-        errors={errors}
-        onChange={onChange}
-        onBlur={onBlur}
+        errors={billingErrors}
+        onChange={handleBillingChange}
+        onBlur={handleBillingBlur}
       />
     </section>
   );

@@ -1,4 +1,4 @@
-.checkout-shipping {
+.shipping-options {
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
@@ -71,16 +71,47 @@
   color: rgb(174, 171, 171);
 }
 
-/* 運送資料表單 */
-.adress-form {
-  width: 80vw;
-  max-width: 900px;
+/* 收件者資訊 */
+.recipient-information {
+  margin: 20px 30px;
+  flex-wrap: wrap;
 }
-.adress-form-title {
+.recipient-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.recipient-information-title {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.same-as-billing {
+  display: flex;
+  color: #d2b48c;
+  font-size: 1rem;
+}
+
+/* 運送資料表單 */
+.address-form,
+.store-form {
+  max-width: 900px;
+  padding: 30px;
+
+  border-radius: 5px;
+}
+
+.address-form-title,
+.store-form-title {
   background-color: var(--checkout-header-color);
   color: var(--checkout-header-text-color);
   padding: 10px 15px;
-  margin: 20px 0;
+  margin-bottom: 10px;
   border-radius: 5px;
   display: inline-block;
 }
