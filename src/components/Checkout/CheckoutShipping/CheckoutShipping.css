@@ -26,6 +26,11 @@
   border: 2px solid #d2b48c;
 }
 
+.shipping-error {
+  border: 2px solid #e53935;
+  background-color: #fff5f5;
+}
+
 .shipping-info {
   margin-left: 15px;
   flex: 1;
@@ -114,4 +119,10 @@
   margin-bottom: 10px;
   border-radius: 5px;
   display: inline-block;
+}
+
+/* 超商 */
+.brands {
+  padding: 0;
+  margin: 20px 0;
 }

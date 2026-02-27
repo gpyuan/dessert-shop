@@ -10,10 +10,64 @@
   align-items: center;
 }
 
+/* 小計 */
+
+.checkout-summary-container {
+  border: 1px solid var(--checkout-header-color);
+  padding: 20px;
+  display: flex;
+  width: 90%;
+
+  max-width: 870px;
+  min-width: 375px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 5px;
+
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--checkout-header-color);
+}
+
+.summary-title {
+  font-size: 1.25rem;
+  color: #655b5b;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--checkout-header-color);
+  padding-bottom: 10px;
+}
+
+.summary-label {
+  color: #655b5b;
+}
+
+.summary-value {
+  color: #a9a4a4;
+}
+
+.total-highlight .summary-label {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.total-highlight .summary-value {
+  color: rgb(235, 137, 76);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 /* 購物車內容 */
 .checkout-container {
   background-color: var(--section-color);
   width: 100vw;
+  padding: 20px 0;
 }
 .checkout-section {
   width: 900px;
@@ -53,6 +107,8 @@
 }
 
 .checkout-cart-item-total {
+  display: flex;
+  flex-direction: column;
   text-align: end;
   gap: 15px;
   padding: 20px;
@@ -61,8 +117,55 @@
   border-radius: 0 0 5px 5px;
 }
 
+.empty-cart-view {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.back-to-shop-button {
+  background-color: rgba(144, 104, 18, 0.7);
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  width: 200px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+.back-to-shop-button:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* 付款運送方式 */
 .checkout-fulfillment {
   width: 900px;
   background-color: var(--section-color);
+}
+
+.shipping-error-message {
+  margin-left: 10px;
+}
+
+/* 確認按鈕 */
+.checkout-submit-section {
+  text-align: center;
+}
+
+.checkout-submit-button {
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 810px;
+  background-color: rgba(144, 104, 18, 0.7);
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.checkout-submit-button:hover {
+  background-color: rgb(144, 104, 18);
 }

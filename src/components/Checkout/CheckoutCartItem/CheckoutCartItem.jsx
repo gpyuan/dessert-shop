@@ -4,6 +4,20 @@ import "./CheckoutCartItem.css";
 const CheckoutCartItem = ({ item }) => {
   const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
 
+  // 處理減少數量的邏輯
+  const handleDecrease = () => {
+    if (item.quantity === 1) {
+      const isConfirmed = window.confirm(
+        `確定要將 "${item.name}" 從購物車中移除嗎？`
+      );
+      if (isConfirmed) {
+        removeFromCart(item.cartItemId);
+      }
+    } else {
+      decreaseQuantity(item.cartItemId);
+    }
+  };
+
   return (
     <div className="cart-grid-layout  checkout-cart-item">
       {/* 商品圖片 */}
@@ -26,11 +40,7 @@ const CheckoutCartItem = ({ item }) => {
 
       {/* 數量控制 */}
       <div className="checkout-cart-item-quantity">
-        <button
-          type="button"
-          onClick={() => decreaseQuantity(item.cartItemId)}
-          aria-label="減少數量"
-        >
+        <button type="button" onClick={handleDecrease} aria-label="減少數量">
           －
         </button>
         <span className="checkout-cart-item-quantity-number">
