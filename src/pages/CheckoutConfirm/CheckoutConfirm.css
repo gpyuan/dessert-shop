@@ -1,0 +1,189 @@
+.confirm-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.confirm-card {
+  max-width: 800px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.confirm-card h1 {
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+.order-number {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.order-number strong {
+  color: var(--main-color);
+}
+
+.order-summary-box {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.order-summary-box h2 {
+  margin: 0 0 20px 0;
+  color: var(--main-color);
+  border-bottom: 2px solid var(--main-color);
+  padding-bottom: 10px;
+}
+
+.info-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.info-section h3 {
+  margin: 0 0 10px 0;
+  color: var(--main-color);
+  font-size: 1.1rem;
+}
+
+.info-section p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.item-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.item-quantity {
+  margin: 0 20px;
+  color: #666;
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+.total-section {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 1rem;
+}
+
+.grand-total {
+  border-top: 2px solid var(--main-color);
+  padding-top: 15px;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.action-buttons button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-home {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.btn-home:hover {
+  background-color: rgba(149, 82, 1, 0.8);
+}
+
+.btn-print {
+  background-color: #fff;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+}
+
+.btn-print:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+/* 列印樣式 */
+@media print {
+  .action-buttons {
+    display: none;
+  }
+
+  .confirm-container {
+    background: white;
+  }
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .confirm-card {
+    padding: 20px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+}

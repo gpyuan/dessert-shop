@@ -31,6 +31,10 @@
   background-color: #fff5f5;
 }
 
+.shipping-error-message {
+  margin: 10px 30px;
+}
+
 .shipping-info {
   margin-left: 15px;
   flex: 1;

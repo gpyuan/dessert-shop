@@ -11,6 +11,11 @@
 }
 
 /* 小計 */
+.checkout-summary {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
 
 .checkout-summary-container {
   border: 1px solid var(--checkout-header-color);
@@ -54,7 +59,6 @@
 
 .total-highlight .summary-label {
   color: #333;
-  font-weight: bold;
   font-size: 1.2rem;
 }
 
@@ -66,12 +70,12 @@
 /* 購物車內容 */
 .checkout-container {
   background-color: var(--section-color);
-  width: 100vw;
+  width: 100%;
   padding: 20px 0;
 }
 .checkout-section {
   width: 900px;
-  margin: auto;
+  margin: 0 auto;
   padding: 15px;
   background-color: var(--section-color);
 }
@@ -143,10 +147,6 @@
 .checkout-fulfillment {
   width: 900px;
   background-color: var(--section-color);
-}
-
-.shipping-error-message {
-  margin-left: 10px;
 }
 
 /* 確認按鈕 */

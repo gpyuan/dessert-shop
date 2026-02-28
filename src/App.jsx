@@ -12,6 +12,7 @@ import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import Announcement from "./pages/Announcement/Announcement";
 import MiniCart from "./components/Minicart/MiniCart";
 import Checkout from "./pages/Checkout/Checkout";
+import CheckoutConfirm from "./pages/CheckoutConfirm/CheckoutConfirm";
 import "./index.css";
 
 function App() {
@@ -32,7 +33,9 @@ function App() {
         <Route path="/products/:category" element={<CategoryPage />}></Route>
         <Route path="/announcement" element={<Announcement />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/checkout/confirm" element={<CheckoutConfirm />}></Route>
       </Routes>
+
       <MiniCart open={cartOpen} onClose={() => setCartOpen(false)}></MiniCart>
       <Footer />
     </BrowserRouter>
