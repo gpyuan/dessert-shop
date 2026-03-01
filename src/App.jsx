@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Navbar from "./components//Navbar/Navbar";
@@ -17,10 +17,12 @@ import "./index.css";
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
-
+  const handleToggleCart = () => {
+    setCartOpen((prev) => !prev);
+  };
   return (
-    <BrowserRouter>
-      <Navbar onCartClick={() => setCartOpen(true)} />
+    <Router>
+      <Navbar onToggleCart={handleToggleCart} />
       <Toast />
 
       <Routes>
@@ -38,7 +40,7 @@ function App() {
 
       <MiniCart open={cartOpen} onClose={() => setCartOpen(false)}></MiniCart>
       <Footer />
-    </BrowserRouter>
+    </Router>
   );
 }
 

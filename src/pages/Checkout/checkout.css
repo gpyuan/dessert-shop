@@ -24,7 +24,7 @@
   width: 90%;
 
   max-width: 870px;
-  min-width: 375px;
+  min-width: 400px;
   margin: auto;
   background-color: #fff;
   border-radius: 5px;
@@ -71,10 +71,12 @@
 .checkout-container {
   background-color: var(--section-color);
   width: 100%;
+  min-width: 400px;
   padding: 20px 0;
 }
 .checkout-section {
-  width: 900px;
+  max-width: 900px;
+  min-width: 350px;
   margin: 0 auto;
   padding: 15px;
   background-color: var(--section-color);
@@ -168,4 +170,14 @@
 }
 .checkout-submit-button:hover {
   background-color: rgb(144, 104, 18);
+}
+
+/* RWD */
+@media screen and (max-width: 840px) {
+  .cart-grid-layout {
+    display: flex;
+  }
+  .checkout-cart-item-header span {
+    display: none;
+  }
 }

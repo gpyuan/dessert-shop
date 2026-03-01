@@ -13,6 +13,8 @@ const MiniCart = ({ open, onClose }) => {
     if (!open) return;
 
     const handleClickOutside = (e) => {
+      if (e.target.closest(".cart-toggle-btn")) return;
+
       if (cartRef.current && !cartRef.current.contains(e.target)) {
         onClose();
       }
@@ -37,7 +39,7 @@ const MiniCart = ({ open, onClose }) => {
         )}
       </div>
       {cartItems.length > 0 && (
-        <Link to="/checkout" className="mini-cart-checkout">
+        <Link to="/checkout" className="mini-cart-checkout" onClick={onClose}>
           立刻結帳
         </Link>
       )}

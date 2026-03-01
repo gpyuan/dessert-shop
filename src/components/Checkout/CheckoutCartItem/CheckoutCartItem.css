@@ -1,5 +1,5 @@
 .checkout-cart-item {
-  width: 100%;
+  max-width: 900px;
   padding: 15px;
   border: 1px solid rgb(231, 221, 214);
   background-color: #fff;
@@ -70,4 +70,67 @@
 }
 .checkout-cart-item-remove-btn:hover {
   filter: brightness(0.5);
+}
+
+@media screen and (max-width: 620px) {
+  .cart-grid-layout {
+    display: grid;
+    grid-template-columns: 90px 1fr 80px;
+    align-items: center;
+    grid-template-areas:
+      "img info remove"
+      "img price  qty";
+    gap: 8px;
+    width: 100%;
+  }
+
+  .checkout-cart-item-info,
+  .checkout-cart-item-price,
+  .checkout-cart-item-quantity {
+    width: auto;
+    margin: 0;
+  }
+
+  /* grid排版 */
+  .checkout-cart-item-img {
+    grid-area: img;
+  }
+  .checkout-cart-item-remove-btn {
+    grid-area: remove;
+    justify-self: end;
+  }
+  .checkout-cart-item-quantity {
+    grid-area: qty;
+    justify-self: end;
+  }
+  .checkout-cart-item-price {
+    grid-area: price;
+  }
+
+  .checkout-cart-item-info {
+    display: block;
+  }
+
+  .checkout-cart-item-img {
+    grid-row: span 2;
+    align-self: center;
+  }
+
+  .checkout-cart-item-info h3 {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    grid-area: info;
+    min-width: 0;
+  }
+  .checkout-cart-item-flavor {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .checkout-cart-item-subtotal {
+    display: none;
+  }
 }

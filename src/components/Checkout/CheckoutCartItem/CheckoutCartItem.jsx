@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
 import "./CheckoutCartItem.css";
 
@@ -22,7 +23,9 @@ const CheckoutCartItem = ({ item }) => {
     <div className="cart-grid-layout  checkout-cart-item">
       {/* 商品圖片 */}
       <div className="checkout-cart-item-img">
-        <img src={item.image} alt={item.name} />
+        <Link to={`/product/${item.productId}`}>
+          <img src={item.image} alt={item.name} />
+        </Link>
       </div>
 
       {/* 商品名稱及口味 */}
@@ -32,12 +35,10 @@ const CheckoutCartItem = ({ item }) => {
           <p className="checkout-cart-item-flavor">({item.flavor})</p>
         )}
       </div>
-
       {/* 商品單價 */}
       <div className="checkout-cart-item-price">
         <p>NT${item.price}</p>
       </div>
-
       {/* 數量控制 */}
       <div className="checkout-cart-item-quantity">
         <button type="button" onClick={handleDecrease} aria-label="減少數量">
@@ -54,12 +55,10 @@ const CheckoutCartItem = ({ item }) => {
           ＋
         </button>
       </div>
-
       {/* 小計 */}
       <div className="checkout-cart-item-subtotal">
         NT${item.price * item.quantity}
       </div>
-
       {/* 刪除 */}
       <div className="checkout-cart-item-remove-btn">
         <button onClick={() => removeFromCart(item.cartItemId)}>✕</button>

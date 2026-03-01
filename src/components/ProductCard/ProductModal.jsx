@@ -1,8 +1,14 @@
 import ProductDetailContent from "../ProductDetail/ProductDetailContent";
-
 import "./ProductModal.css";
+import { useEffect } from "react";
 
 const ProductModal = ({ product, onClose }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

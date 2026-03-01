@@ -9,6 +9,7 @@
   margin: auto;
   padding: 40px;
   gap: 60px;
+  align-items: center;
 }
 
 .product-detail-image {

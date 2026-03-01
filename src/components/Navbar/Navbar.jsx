@@ -5,7 +5,7 @@ import "./Navbar.css";
 import navbarLogo from "../../assets/logo.jpg";
 import MobileMenu from "./MobileMenu";
 
-const Navbar = ({ onCartClick }) => {
+const Navbar = ({ onToggleCart }) => {
   const { cartItems } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,7 +17,10 @@ const Navbar = ({ onCartClick }) => {
       <div className="navbar-inner">
         {/* 右上角功能區 */}
         <div className="navigation-action">
-          <button className="navigation-icon" onClick={onCartClick}>
+          <button
+            className="navigation-icon cart-toggle-btn"
+            onClick={onToggleCart}
+          >
             <i className="fa-solid fa-cart-shopping"></i>
             {/* 購物車數字 */}
             <span className="cart-count">{totalQuantity}</span>
