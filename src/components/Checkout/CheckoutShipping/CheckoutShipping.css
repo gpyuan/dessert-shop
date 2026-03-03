@@ -104,6 +104,15 @@
   display: flex;
   color: #d2b48c;
   font-size: 1rem;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+}
+.same-as-billing input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  accent-color: #ae8958;
 }
 
 /* 運送資料表單 */

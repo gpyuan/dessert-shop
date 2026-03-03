@@ -4,7 +4,13 @@ import ContactForm from "../ContactForm";
 import { useCheckout } from "../../../context/CheckoutContext";
 import { StoreData } from "../../../storeData";
 
-const CheckoutShipping = () => {
+const CheckoutShipping = ({
+  shippingMethodErrorRef,
+  paymentMethodErrorRef,
+  addressRef,
+  storeRef,
+  receiverRef,
+}) => {
   const {
     // 物流相關
     shippingOptions,
@@ -81,37 +87,39 @@ const CheckoutShipping = () => {
   return (
     <div className="checkout-shipping">
       {/* 1. 運送方法 */}
-      <h3 className="recipient-information-title">運送方式</h3>
-      {shippingMethodError && (
-        <p className="error-message shipping-error-message">
-          {shippingMethodError}
-        </p>
-      )}
-      <div className="shipping-options">
-        {shippingOptions.map((option) => (
-          <label
-            key={option.id}
-            className={`shipping-option ${
-              shippingMethod === option.id ? "selected" : ""
-            } ${shippingMethodError ? "shipping-error" : ""}`}
-          >
-            <input
-              type="radio"
-              name="shipping"
-              value={option.id}
-              checked={shippingMethod === option.id}
-              onChange={(e) => handleShippingMethodChange(e.target.value)}
-              onBlur={handleShippingMethodBlur}
-            />
-            <div className="shipping-info">
-              <div className="shipping-name">{option.name}</div>
-              <p className="shipping-description">{option.description}</p>
-            </div>
-            <span className="shipping-price">
-              {option.price === 0 ? "免運費" : `NT$${option.price}`}
-            </span>
-          </label>
-        ))}
+      <div ref={shippingMethodErrorRef}>
+        <h3 className="recipient-information-title">運送方式</h3>
+        {shippingMethodError && (
+          <p className="error-message shipping-error-message">
+            {shippingMethodError}
+          </p>
+        )}
+        <div className="shipping-options">
+          {shippingOptions.map((option) => (
+            <label
+              key={option.id}
+              className={`shipping-option ${
+                shippingMethod === option.id ? "selected" : ""
+              } ${shippingMethodError ? "shipping-error" : ""}`}
+            >
+              <input
+                type="radio"
+                name="shipping"
+                value={option.id}
+                checked={shippingMethod === option.id}
+                onChange={(e) => handleShippingMethodChange(e.target.value)}
+                onBlur={handleShippingMethodBlur}
+              />
+              <div className="shipping-info">
+                <div className="shipping-name">{option.name}</div>
+                <p className="shipping-description">{option.description}</p>
+              </div>
+              <span className="shipping-price">
+                {option.price === 0 ? "免運費" : `NT$${option.price}`}
+              </span>
+            </label>
+          ))}
+        </div>
       </div>
 
       <br />
@@ -119,7 +127,7 @@ const CheckoutShipping = () => {
       <br />
 
       {/* 2. 付款方式 */}
-      <div className="payment-section">
+      <div ref={paymentMethodErrorRef} className="payment-section">
         <h3 className="recipient-information-title">付款方式</h3>
         {paymentMethodError && (
           <p className="error-message shipping-error-message">
@@ -154,7 +162,7 @@ const CheckoutShipping = () => {
       <hr />
 
       {/* 3. 收件人資訊 */}
-      <div className="recipient-information">
+      <div ref={receiverRef} className="recipient-information">
         <div className="recipient-header">
           <h3 className="recipient-information-title">收件人資訊</h3>
           <label className="same-as-billing">
@@ -178,7 +186,7 @@ const CheckoutShipping = () => {
 
       {/* 4. 宅配地址表單 */}
       {shippingMethod === "home" && (
-        <div className="address-form">
+        <div ref={addressRef} className="address-form">
           <h3 className="address-form-title">請填寫配送地址</h3>
 
           {/* 縣市 */}
@@ -259,7 +267,7 @@ const CheckoutShipping = () => {
 
       {/* 5. 超商門市表單 */}
       {shippingMethod === "store" && (
-        <div className="store-form">
+        <div ref={storeRef} className="store-form">
           <h3 className="store-form-title">請選擇超商取貨門市</h3>
 
           {/* 超商品牌 */}

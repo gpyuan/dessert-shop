@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import "./Checkout.css";
-import { useEffect } from "react";
+import { StoreData } from "../../storeData";
 import CheckoutCartItem from "../../components/Checkout/CheckoutCartItem/CheckoutCartItem";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -8,17 +9,40 @@ import CheckoutShipping from "../../components/Checkout/CheckoutShipping/Checkou
 import CheckoutBilling from "../../components/Checkout/CheckoutBilling/CheckoutBilling";
 
 const Checkout = () => {
-  const { cartItems } = useCart();
+  const { cartItems, resetCartItems } = useCart();
   const navigate = useNavigate();
 
   // 從 Context 取得狀態與金額
   const {
     submitCheckout,
+    billingData,
+    billingErrors,
+    shippingContact,
+    shippingErrors,
+    shippingOptions,
+    shippingMethod,
     shippingMethodError,
+    address,
+    addressErrors,
+    storeInfo,
+    storeInfoErrors,
+    paymentMethod,
+    paymentMethodError,
+    paymentOptions,
     shippingPrice,
     setSubtotal,
     totalAmount,
+    resetCheckout,
   } = useCheckout();
+
+  // 錯誤訊息Ref
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  const buyerRef = useRef(null);
+  const shippingMethodErrorRef = useRef(null);
+  const paymentMethodErrorRef = useRef(null);
+  const receiverRef = useRef(null);
+  const addressRef = useRef(null);
+  const storeRef = useRef(null);
 
   // 計算當前購物車小計
   const subtotal = cartItems.reduce(
@@ -29,7 +53,7 @@ const Checkout = () => {
   // 當小計改變時，同步回 Context
   useEffect(() => {
     setSubtotal(subtotal);
-  }, [subtotal, setSubtotal]);
+  }, [subtotal]);
 
   if (cartItems.length === 0) {
     return (
@@ -45,11 +69,101 @@ const Checkout = () => {
   const itemCount = cartItems.length;
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const paymentOptionsName =
+    paymentOptions.find((opt) => opt.id === paymentMethod)?.name || "未選擇";
+
+  const shippingMethodName =
+    shippingOptions.find((opt) => opt.id === shippingMethod)?.name || "未選擇";
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!submitCheckout()) return;
-    navigate("/checkout/confirm");
+    setSubmitAttempted(true);
+
+    const isValid = submitCheckout();
+    if (!isValid) return;
+
+    // 建立物流資訊快照
+    let shippingDetail = {};
+    if (shippingMethod === "home") {
+      shippingDetail = { ...address };
+    } else if (shippingMethod === "store") {
+      const brandStores = StoreData[storeInfo.brand] || [];
+      const selectedStore = brandStores.find((s) => s.id === storeInfo.storeId);
+
+      shippingDetail = {
+        ...storeInfo,
+        storeName: selectedStore ? selectedStore.name : storeInfo.storeId,
+      };
+    }
+
+    // 紀錄訂單資訊
+    const orderData = {
+      orderNumber: `ML-${Date.now()}`,
+      billingDataInfo: { ...billingData },
+      items: [...cartItems],
+      subtotal,
+      shippingPrice,
+      totalAmount,
+      shippingType: shippingMethod,
+      shippingMethod: shippingMethodName,
+      shippingDetail,
+      paymentMethod: paymentOptionsName,
+      shippingContactInfo: { ...shippingContact },
+    };
+
+    // 導向確認頁並帶資料
+    navigate("/checkout/confirm", { state: orderData });
+
+    // 清空購物車與 checkout 狀態
+    setTimeout(() => {
+      resetCartItems();
+      resetCheckout();
+    }, 100);
   };
+
+  useEffect(() => {
+    if (!submitAttempted) return;
+
+    let firstErrorRef = null;
+
+    if (Object.values(billingErrors).some((err) => err)) {
+      firstErrorRef = buyerRef;
+    } else if (shippingMethodError) {
+      firstErrorRef = shippingMethodErrorRef;
+    } else if (paymentMethodError) {
+      firstErrorRef = paymentMethodErrorRef;
+    } else if (
+      shippingErrors &&
+      Object.values(shippingErrors).some((err) => err)
+    ) {
+      firstErrorRef = receiverRef;
+    } else if (
+      shippingMethod === "home" &&
+      Object.values(addressErrors).some((err) => err)
+    ) {
+      firstErrorRef = addressRef;
+    } else if (
+      shippingMethod === "store" &&
+      Object.values(storeInfoErrors).some((err) => err)
+    ) {
+      firstErrorRef = storeRef;
+    }
+
+    firstErrorRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [
+    submitAttempted,
+    billingErrors,
+    shippingErrors,
+    shippingMethodError,
+    paymentMethodError,
+    addressErrors,
+    storeInfo,
+    storeInfoErrors,
+    shippingMethod,
+  ]);
 
   return (
     <form className="checkout-container" onSubmit={handleSubmit}>
@@ -103,7 +217,7 @@ const Checkout = () => {
       </section>
 
       {/* 2. 購買人資訊 */}
-      <section className="checkout-section">
+      <section ref={buyerRef} className="checkout-section">
         <h2 className="checkout-title">
           <span className="checkout-number">2</span>購買人資訊
         </h2>
@@ -115,7 +229,13 @@ const Checkout = () => {
         <h2 className="checkout-title">
           <span className="checkout-number">3</span>付款運送方式
         </h2>
-        <CheckoutShipping />
+        <CheckoutShipping
+          shippingMethodErrorRef={shippingMethodErrorRef}
+          paymentMethodErrorRef={paymentMethodErrorRef}
+          addressRef={addressRef}
+          storeRef={storeRef}
+          receiverRef={receiverRef}
+        />
       </section>
 
       <section className="checkout-section checkout-submit-section">

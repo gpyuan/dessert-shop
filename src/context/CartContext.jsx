@@ -55,6 +55,9 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // 刪除全部商品
+  const resetCartItems = () => setCartItems([]);
+
   // checkout 的增加數量按鈕
   const increaseQuantity = (cartItemId) => {
     setCartItems((prev) =>
@@ -92,6 +95,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        resetCartItems,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
