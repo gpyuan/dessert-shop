@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Checkout.css";
-import { StoreData } from "../../storeData";
+import { storeData } from "../../storeData";
 import CheckoutCartItem from "../../components/Checkout/CheckoutCartItem/CheckoutCartItem";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -87,7 +87,7 @@ const Checkout = () => {
     if (shippingMethod === "home") {
       shippingDetail = { ...address };
     } else if (shippingMethod === "store") {
-      const brandStores = StoreData[storeInfo.brand] || [];
+      const brandStores = storeData[storeInfo.brand] || [];
       const selectedStore = brandStores.find((s) => s.id === storeInfo.storeId);
 
       shippingDetail = {

@@ -1,4 +1,4 @@
-export const AddressData = {
+export const addressData = {
   台北市: [
     "中正區",
     "大同區",

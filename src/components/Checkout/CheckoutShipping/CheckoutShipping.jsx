@@ -1,8 +1,8 @@
 import "./CheckoutShipping.css";
-import { AddressData } from "../../../AddressData";
+import { addressData } from "../../../addressData";
 import ContactForm from "../ContactForm";
 import { useCheckout } from "../../../context/CheckoutContext";
-import { StoreData } from "../../../storeData";
+import { storeData } from "../../../storeData";
 
 const CheckoutShipping = ({
   shippingMethodErrorRef,
@@ -48,25 +48,25 @@ const CheckoutShipping = ({
   } = useCheckout();
 
   // 宅配地址邏輯
-  const cities = Object.keys(AddressData);
+  const cities = Object.keys(addressData);
   const districts =
-    address.city && AddressData[address.city] ? AddressData[address.city] : [];
+    address.city && addressData[address.city] ? addressData[address.city] : [];
 
   // 超商選擇邏輯
-  const storeBrands = Object.keys(StoreData || {});
+  const storeBrands = Object.keys(storeData || {});
 
   // 根據品牌取得所有縣市（去重）
   const storeCities =
-    storeInfo.brand && StoreData[storeInfo.brand]
-      ? [...new Set(StoreData[storeInfo.brand].map((s) => s.city))]
+    storeInfo.brand && storeData[storeInfo.brand]
+      ? [...new Set(storeData[storeInfo.brand].map((s) => s.city))]
       : [];
 
   // 根據品牌和縣市取得所有地區（去重）
   const storeDistricts =
-    storeInfo.brand && storeInfo.city && StoreData[storeInfo.brand]
+    storeInfo.brand && storeInfo.city && storeData[storeInfo.brand]
       ? [
           ...new Set(
-            StoreData[storeInfo.brand]
+            storeData[storeInfo.brand]
               .filter((s) => s.city === storeInfo.city)
               .map((s) => s.district)
           ),
@@ -78,8 +78,8 @@ const CheckoutShipping = ({
     storeInfo.brand &&
     storeInfo.city &&
     storeInfo.district &&
-    StoreData[storeInfo.brand]
-      ? StoreData[storeInfo.brand].filter(
+    storeData[storeInfo.brand]
+      ? storeData[storeInfo.brand].filter(
           (s) => s.city === storeInfo.city && s.district === storeInfo.district
         )
       : [];
