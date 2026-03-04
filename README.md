@@ -124,47 +124,58 @@
 - 送出訂單時，透過資料比對將門市 ID 轉換為門市名稱，並產出獨立的訂單快照。
 
 ---
+```
+
+```
 
 ## 專案結構
-```
+
 
 src
 ├─ components
-│ ├─ FlavorSelector
-│ ├─ Footer
-│ └─ MiniCart
-│ └─ Navbar
-│ └─ ProductCard
-│ └─ ProductDetail
-│ └─ ProductSection
-│ └─ Toast
+│ ├─ FlavorSelector/
+│ ├─ Footer/
+│ ├─ MiniCart/
+│ ├─ Navbar/
+│ ├─ ProductCard/
+│ ├─ ProductDetail/
+│ ├─ ProductSection/
+│ └─ Toast/
 │
 ├─ context
 │ ├─ CartContext.jsx
-│ └─ CheckoutContext.jsx
+│ ├─ CheckoutContext.jsx
 │ └─ ToastContext.jsx
 │
 ├─ pages
-│ ├─ Announcement
-│ ├─ CategoryPage
-│ ├─ Checkout
-│ ├─ CheckoutConfirm
-│ ├─ Home
-│ ├─ Policy
-│ └─ ProductDetail
+│ ├─ Announcement/
+│ ├─ CategoryPage/
+│ ├─ Checkout/
+│ ├─ CheckoutConfirm/
+│ ├─ Home/
+│ ├─ Policy/
+│ └─ ProductDetail/
 │
 ├─ data
-│ └─ products.js
-│ └─ addressData.js
+│ ├─ products.js
+│ ├─ addressData.js
 │ └─ storeData.js
 │
-└─ App.jsx
+├─ App.jsx
+└─ main.jsx
+
+- components：可重用 UI 元件
+- pages：路由頁面
+- context：全域狀態管理
+- data：靜態資料模擬 API
+
+```
 
 ````
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ```bash
 git clone https://github.com/gpyuan/dessert-shop.git
